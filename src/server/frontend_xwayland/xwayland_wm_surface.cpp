@@ -89,6 +89,7 @@ void mf::XWaylandWMSurface::set_surface(WlSurface* wayland_surface)
     auto const shell_surface = xwm->build_shell_surface(this, wayland_surface);
     shell_surface_unsafe = shell_surface;
     shell_surface_destroyed = shell_surface->destroyed_flag();
+    shell_surface->set_server_side_decorated(!init.override_redirect);
 
     {
         std::lock_guard<std::mutex> lock{mutex};

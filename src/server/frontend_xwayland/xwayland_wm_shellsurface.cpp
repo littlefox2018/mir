@@ -41,7 +41,7 @@ mf::XWaylandWMShellSurface::XWaylandWMShellSurface(
     : WindowWlSurfaceRole{&seat, client, wayland_surface, shell, output_manager},
       surface{xwayland_surface}
 {
-    set_server_side_decorated(true);
+    // TODO: make sure we don't use surface after it is destroyed
 }
 
 mf::XWaylandWMShellSurface::~XWaylandWMShellSurface()
