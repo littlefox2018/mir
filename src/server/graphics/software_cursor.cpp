@@ -182,6 +182,11 @@ void mg::SoftwareCursor::show(CursorImage const& cursor_image)
 std::shared_ptr<mg::detail::CursorRenderable>
 mg::SoftwareCursor::create_renderable_for(CursorImage const& cursor_image, geom::Point position)
 {
+    // TODO: This assumes that alloc_software_buffer() allocates a
+    // buffer with minimum possible stride
+    // (ie: width × MIR_BYTES_PER_PIXEL(format)). This is not
+    // necessarily the optimal (for example, rpi-dispmanx wants to make
+    // stride a multiple of 16)
     size_t const pixels_size =
         cursor_image.size().width.as_uint32_t() *
         cursor_image.size().height.as_uint32_t() *
