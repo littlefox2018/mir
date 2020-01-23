@@ -268,6 +268,8 @@ foreach(platform IN LISTS MIR_PLATFORM)
   if (platform STREQUAL "rpi-dispmanx")
     set(MIR_BUILD_PLATFORM_RPI_DISPMANX TRUE)
     pkg_check_modules(BCM_HOST REQUIRED bcm_host)
+    # Brcm EGL continues to be the worst
+    add_definitions(-DGL_UNPACK_ROW_LENGTH_EXT=GL_UNPACK_ROW_LENGTH)
   endif()
 endforeach(platform)
 
